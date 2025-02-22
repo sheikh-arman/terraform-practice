@@ -85,16 +85,6 @@ resource "aws_route_table_association" "private_assoc" {
   subnet_id      = aws_subnet.bastion_private_subnet.id
   route_table_id = aws_route_table.private_rt.id
 }
-#create ec2 bastion server
-resource "aws_instance" "ec2_bastion_server" {
-  ami = ""
-  instance_type = "t2.micro"
-  associate_public_ip_address = true
-  tags = {
-    Name= "bastion Host"
-  }
-}
-
 
 # create security group
 # resource "aws_security_group" "bastion_sg" {
@@ -118,16 +108,18 @@ resource "aws_instance" "ec2_bastion_server" {
 #         Name = "bastion-sg"
 #     }
 # }
-#create ec2 bastion ser
-resource "aws_instance" "ec2_private_server" {
+#create ec2 bastion server
+resource "aws_instance" "ec2_bastion_server" {
   ami = ""
+  instance_type = "t2.micro"
+  associate_public_ip_address = true
   subnet_id     = aws_subnet.bastion_public_subnet.id
   key_name = "your-key"  # Use an existing SSH key pair
-  instance_type = "t2.micro"
   tags = {
-    Name= "Private Host"
+    Name= "bastion Host"
   }
 }
+
 #create ec2 private server
 resource "aws_instance" "ec2_private_server" {
   ami = ""
