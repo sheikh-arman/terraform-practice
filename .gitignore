@@ -1,0 +1,21 @@
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Terraform crash logs
+crash.log
+
+# Terraform plan files
+*.tfplan
+
+# Ignore .terraform directory
+.terraform/
+.terraform.lock.hcl
+
+# Ignore private SSH keys (if any)
+*.pem
+*.key
+
+# Ignore environment-specific variables
+terraform.tfvars
+terraform.tfvars.json
